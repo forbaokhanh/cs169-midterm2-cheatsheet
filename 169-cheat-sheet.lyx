@@ -1,0 +1,3785 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extarticle
+\begin_preamble
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{calc}
+\usepackage{color,graphicx,overpic}
+\usepackage[shortlabels]{enumitem}
+\usepackage{hyperref}
+\usepackage{ifthen}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{wrapfig}
+
+\titlespacing*{\section}{0pt}{0.5em}{0em}
+\titlespacing*{\subsection}{0pt}{0.5em}{0em}
+\titlespacing*{\subsubsection}{0pt}{0.5em}{0em}
+\titleformat{\section}{\vspace{1em}\titlerule\normalfont\fontsize{7}{7}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\fontsize{6}{6}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsubsection}{\titlerule\normalfont\fontsize{6}{6}}{\thesection}{1em}{}
+\titlespacing*{\labeling}{0pt}{0em}{0em}
+
+\let\stdboxed\boxed
+\renewcommand{\boxed}[1]{
+  \setlength{\fboxsep}{0.05em}
+  \stdboxed{#1}
+}
+
+\setlist{nolistsep,leftmargin=*}
+
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\columnsep}{10pt}
+
+\newtheorem{example}[section]{Example}
+
+\let\textquotedbl="
+\def\ci{\perp\!\!\!\perp}
+
+\raggedright
+
+\newcommand{\mytitle}[2]{
+  \begin{center}\small{#1} -- \scriptsize{#2}\end{center}
+}
+
+
+\hyphenpenalty=100
+\end_preamble
+\options 3pt
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding auto
+\fontencoding default
+\font_roman "times" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 0.25in
+\topmargin 0.25in
+\rightmargin 0.25in
+\bottommargin 0.25in
+\secnumdepth -2
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle empty
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fontsize{5}{4}
+\backslash
+selectfont
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+mytitle{CS 169 Midterm 2}{Genevieve Tran}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{multicols}{4}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Associations
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Associations and Foreign Keys.
+
+\series default
+ Cartesian Products and the filter.
+ FK points to a primary key in another table.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+ActiveRecord Association Support.
+
+\series default
+ Allows manipulating DB-managed associations more Rubyistically
+\end_layout
+
+\begin_layout Standard
+has_many :reviews, belongs_to :movie @movie.reviews.build(:potatoes => 5)
+  //calling @movie.save, @movie.reviews.create(:potatoes => 5) // also tries
+ to save, @movie.reviews.where(:potatoes => 5).order.etc - queries, @movie.reviews
+ << @new_review, saves just fine.
+ 
+\begin_inset Formula $\quad\quad\quad\quad\quad$
+\end_inset
+
+Must add in migration.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Q:
+\series default
+ Which Ruby language mechanisms would be appropriate for implementing associatio
+ns that can be used by ActiveRecord models? (a) build behaviors into ActiveRecor
+d::Base (b) put behaviors in their own Module (c) put behaviors in their
+ own Class ?
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+A:
+\series default
+ (a) or (b), but not (c)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Association Mechanics.
+ 
+\series default
+Make sure to call the FK field object_id, and have an Id field in the object
+ class.
+ // convention over configuration.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Through Associations.
+\end_layout
+
+\begin_layout Itemize
+Can't use has_many and belongs_to.
+ 
+\end_layout
+
+\begin_layout Itemize
+Create a new AR model to model the multiple association.
+ 
+\end_layout
+
+\begin_layout Itemize
+Moviegoer <-> review<->.Movie 
+\end_layout
+
+\begin_layout Itemize
+moviegoer has_many :reviews has_many :movies, :through => :reviews 
+\end_layout
+
+\begin_layout Itemize
+movie has_many :reviews has_many :moviegoers, :through => :reviews 
+\end_layout
+
+\begin_layout Itemize
+review belongs_to :movie r
+\end_layout
+
+\begin_layout Itemize
+eview belongs_to :moviegoer
+\end_layout
+
+\begin_layout Itemize
+Now can do @user.movies, @movie.users
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Q:
+\series default
+ Which of these, if any, is NOT a correct way of saving a new association,
+ given m is an existing movie
+\end_layout
+
+\begin_layout Itemize
+Review.create!(:movie_id=>m.id, :potatoes=>5) 
+\end_layout
+
+\begin_layout Itemize
+r = m.reviews.build(:potatoes => 5) r.save! 
+\end_layout
+
+\begin_layout Itemize
+m.reviews << Review.new(:potatoes=>5) m.save! 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A:
+\series default
+ All of the above
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+RESTful Routes for Associations.
+\end_layout
+
+\begin_layout Standard
+Nested RESTful Routes
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename graphics/routes.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename graphics/restful.pdf
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+If we also have moviegoer has_many reviews, can we use moviegoer_review_path()
+ as a helper? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A:
+\series default
+ Yes, but we must declare reviews as a nested resource of moviegoers in
+ routes.rb 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Wrap-Up.
+\end_layout
+
+\begin_layout Itemize
+@movie.reviews quacks like an enumerable, lazy evaluation, Proxy object 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+DataMapper
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Associates separate mapper with each model
+\end_layout
+
+\begin_layout Standard
+Idea: Keep mapping independent of particular data store used => works with
+ more types of DB 
+\end_layout
+
+\begin_layout Standard
+Can't simplify complex queries and relationships 
+\end_layout
+
+\begin_layout Standard
+No SQL, must write all association methods yourself 
+\end_layout
+
+\begin_layout Standard
+Could be better, could be worse in speed based on what you do 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Referential Integrity.
+
+\series default
+ Deleting a movie and what happens to it's reviews.
+ Remember to test for it.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+:dependent => :destroy or :nullify
+\end_layout
+
+\begin_layout Itemize
+Can also create lifecycle callbacks to do other things with that.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+If using the DataMapper pattern and you want to do one-to-many associations,
+ you can expect that: 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+All of the above (You’ll have to write the association methods yourself;
+ You’ll get better scalability; You’ll get worse scalability)
+\end_layout
+
+\begin_layout Subsection
+DRYing out Rails
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+DRYing out MVC.
+\end_layout
+
+\begin_layout Itemize
+Validity constraint? Aspect-Oriented Programming 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Advice is a specific piece of code that implements a cross-cutting concern
+ 
+\end_layout
+
+\begin_layout Itemize
+Pointcuts are the places you want to "inject" advice at runtime 
+\end_layout
+
+\begin_layout Itemize
+Advice + pointcut = aspect 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Validations! RATINGS = %w(G PG PG-13 R NC-17) //array of strings 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+validates :title, :presence => true 
+\end_layout
+
+\begin_layout Itemize
+validates :rating, :inclusion => {:in =>RATINGS}, :unless => grandfathered?
+\end_layout
+
+\begin_layout Itemize
+m.errors attr that tracks all things that did not pass validation 
+\end_layout
+
+\begin_layout Itemize
+Can call m.valid? But called automatically every time save or update
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Controller filters
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+A filter can change flow of execution "silent failure", so remember to insert
+ a flash
+\end_layout
+
+\begin_layout Itemize
+Put in application controller
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/filter.pdf
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q:
+\series default
+ Which Ruby language features support the DRYness enabled by validations
+ and filters: (a) higher-order functions, (b) closures, (c) metaprogramming
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A:
+\series default
+ All of the above
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Single Sign-on and Third Party Authentication.
+\end_layout
+
+\begin_layout Itemize
+Building block: tamper-evident secure token 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Using cryptography, I create a string that: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Only I can decrypt (decode) 
+\end_layout
+
+\begin_layout Itemize
+I can detect if it’s been tampered with 
+\end_layout
+
+\begin_layout Itemize
+No one else could have created it without knowing my secret key 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Usually, string just contains a “handle” to valuable info that I store myself
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Receive string => I know I can “trust” the handle 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Model session as its own entity 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+session controller creates and deletes session, handles interaction with
+ auth provider •
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Once user is authenticated, we need a local users model to represent him/her
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+session[] remembers primary key (ID) of “currently authenticated user”
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+OmniAuth gem helps a lot by providing uniform API to different “strategies"
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/omni.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+DRYing out queries with reusable scopes.
+\end_layout
+
+\begin_layout Itemize
+M = Movie.for_kids.with_good_reviews(3) ; nil // doing this in the interpreter
+ doesn't run the query since it only has to print the last value of the
+ thing inputted.
+ Scopes are stackable.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/copes.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Code repo Hygiene for Agile Teams
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Version Control: Merging Conflicts.
+\end_layout
+
+\begin_layout Itemize
+When a commit happens you remember the state of the entire tree at the moment,
+ not just the diffs 
+\end_layout
+
+\begin_layout Itemize
+40 digit hex hash(SHA-1) unique in the universe 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Instead use a unique prefix (in this repo) eg.
+ 770gfb 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+HEAD - most recently committed version on the current branch.
+ 
+\end_layout
+
+\begin_layout Itemize
+ORIG_HEAD: right after a merge points to the pre-merged version 
+\end_layout
+
+\begin_layout Itemize
+HEAD~n: n'th previous commit 
+\end_layout
+
+\begin_layout Itemize
+770dfb~2: two commits before this one 
+\end_layout
+
+\begin_layout Itemize
+"master@{01-Sep-2012}" - last commit on this branch at this time 
+\end_layout
+
+\begin_layout Itemize
+git reset --hard ORIG_HEAD (will let you go back to where you were, but
+ it will discard your local changes, which you do not want) 
+\end_layout
+
+\begin_layout Itemize
+git reset --hard HEAD (ignore all the changes I've done to the file without
+ committing them
+\end_layout
+
+\begin_layout Itemize
+git checkout commit-id -- files (retrieve versions of this file that existed
+ in this point and time) 
+\end_layout
+
+\begin_layout Itemize
+git diff commit-id -- files (difference of how that one looks to the current
+ one)
+\end_layout
+
+\begin_layout Itemize
+git blame files (Annotates each line in the given file with information
+ from the revision which last modified the line.) 
+\end_layout
+
+\begin_layout Itemize
+git log files (Shows the commit logs.)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+If you try to push to a remote and get a “non-fast-forward (error): failed
+ to push some refs”, which statement is FALSE? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+You need to manually fix merge conflicts in one or more files (TRUE: Some
+ conflicts present at remote are not present on your local repo; You need
+ to do a merge/pull before you can complete the push; Your local repo is
+ out-of-date with respect to the remote)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Effective Branching.
+ 
+\series default
+Create new branches only for single features.
+ Do some changes and then merge into master.
+ To back out this feature == undo the merge.
+ Ideally the feature does not touch many parts of the app.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/branch1.pdf
+	scale 24
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Create new branch and switch to it 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Git branch CoolNewFeature 
+\end_layout
+
+\begin_layout Itemize
+Git checkout CoolNewFeature 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Edit, add, etc on new branch
+\end_layout
+
+\begin_layout Itemize
+Push branch to orig repo (optional), better this way, because the remote
+ at least knows that this branch exists 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Git push origin CoolNewFeature
+\end_layout
+
+\begin_layout Itemize
+Creates tracking branch on remote repo
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Switch to master once feature done.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Git checkout master
+\end_layout
+
+\begin_layout Itemize
+Git merge CoolNewFeature
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+What if our features are not short-lived? (C to D in the picture)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Git rebase.
+ You need to do this before trying to merge your version against their latest
+ version of master.
+ Get a preview of all the merge conflicts that could go wrong when you actually
+ try to go back to master.
+ Fix them before actually merging.
+\end_layout
+
+\begin_layout Itemize
+Git cherry-pick.
+ Mainly for Branch per release.
+ Create a branch to snapshot exactly the state of the app released at that
+ point 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/branch2.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Once you find a bug on the release branch b, you fix it on branch b and
+ cherry pick that commit into the master to also have that fixed on master
+ and deploy from b.
+ And vice versa.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+If you have push/admin access: Branch + Merge
+\end_layout
+
+\begin_layout Itemize
+If not: 1) fork: clone entire repo on GitHub to one that you can branch,
+ push, etc.
+ 2) Finalize your work on it's own branch 3) pull request asks owner of
+ original repo to pull specific commits from my forked repo
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+If separate sub-teams are assigned to work on release bug fixes and new
+ features, you will need to use: 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+Branch per release + Branch per feature
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Fixing Bugs.
+\end_layout
+
+\begin_layout Itemize
+The 5R's: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Report 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Pivotal Tracker.
+ 0-points 
+\end_layout
+
+\begin_layout Itemize
+"issues" feature on Github 
+\end_layout
+
+\begin_layout Itemize
+Bug-tracking like Bugzilla 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Reproduce and/or Reclassify 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+"as not a bug" or "won't be fixed" if that file is dead 
+\end_layout
+
+\begin_layout Itemize
+OR Reproduce with simplest possible test and add it to regression 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Minimize preconditions 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Regression Test (understand why the bug happens) 
+\end_layout
+
+\begin_layout Itemize
+Repair 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+A test that fails when the bug is present and runs when the bug is absent
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Release the fix (commit and/or deploy) 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Even in non-agile orgs 
+\end_layout
+
+\begin_layout Itemize
+No bug is truly fixed without a test.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Suppose you discover that your most recent release contains a bug whose
+ regression test will require extensive mocking or stubbing because the
+ buggy code is convoluted.
+ Which action, if any, is NOT appropriate? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+Do the refactoring using TDD on the release branch, and push the bug fix
+ as new code with tests
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Design Reviews, Code Reviews, Plan-And-Document Perspective on Project Managemen
+t.
+\end_layout
+
+\begin_layout Itemize
+Design (authors present design) and Code (held after design implemented)
+ Review: meetings.
+ SAMOSAS 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+S: starting and stopping promptly 
+\end_layout
+
+\begin_layout Itemize
+A: agenda, what is the meeting about 
+\end_layout
+
+\begin_layout Itemize
+M: minutes 
+\end_layout
+
+\begin_layout Itemize
+O: one speaker at a time 
+\end_layout
+
+\begin_layout Itemize
+S: send material in advance 
+\end_layout
+
+\begin_layout Itemize
+A: action items at the end of the meeting 
+\end_layout
+
+\begin_layout Itemize
+S: setting the time and date of the next meeting 
+\end_layout
+
+\begin_layout Itemize
+Minutes and action items record results of meeting, start next meeting by
+ reviewing action items 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+AGILE and Reviews.
+ Up to now was only Plan-and-Document.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Pair programming - continuous review.
+ 
+\end_layout
+
+\begin_layout Itemize
+Github - pull requests instead of reviews.
+ They occur daily, mini-reviews.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Which expression statement regarding Reviews and Meetings is FALSE? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+The A’s in SAMOSAS stands for Agenda and Action items, which are optional
+ pieces of good meetings
+\end_layout
+
+\begin_layout Subsection
+Exploring a Legacy Codebase
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+What makes code Legacy and how can Agile help?
+\end_layout
+
+\begin_layout Itemize
+Maintenance is the 60% of the price.
+ And 60% of that 60% goes to enhancements and not bug fixes.
+\end_layout
+
+\begin_layout Itemize
+How AGILE can help: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Exploration: determine where you need to make changes 
+\end_layout
+
+\begin_layout Itemize
+Refactoring: is the code around change point (a) tested, (b)testable: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+(a) good to go 
+\end_layout
+
+\begin_layout Itemize
+!(a) && (b) : apply TDD and BDD cycles to improve coverage 
+\end_layout
+
+\begin_layout Itemize
+!(a) && !(b): 
+\series bold
+refactor - agile 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Add tests to improve coverage as needed 
+\end_layout
+
+\begin_layout Itemize
+Make changes using tests as ground truth 
+\end_layout
+
+\begin_layout Itemize
+Refactor further to leave codebase better than you found it.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+If you've been assigned to modify legacy code, which statement would make
+ you happiest if true?
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+It was covered well by tests.
+ Others: It was originally developed using Agile techniques.
+ It's nicely structured and easy to read.
+ Many of the original design documents are available.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Establishing ground truth with Characterization Tests.
+\end_layout
+
+\begin_layout Itemize
+Characterization test: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Makes known behaviors repeatable 
+\end_layout
+
+\begin_layout Itemize
+Increase confidence that you're not breaking anything 
+\end_layout
+
+\begin_layout Itemize
+Don't try to make improvements 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Integration-level tests: very high level, blackbox.
+ Easy to write without needing to understand completely.
+ 
+\end_layout
+
+\begin_layout Itemize
+What about unit and functional tests? Cheat: learn as you go, write rspec
+ tests that are bound to fail and check out what it actually returns.
+ Almost like a print statement).
+ Poke at it.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Which is FALSE about integration-level characterization tests vs.
+ module- or unit-level characterization tests?
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+\color red
+They are based on fewer assumptions about how the code works.
+ 
+\color green
+(They are just as likely to be unexpectedly dependent on the production
+ database.
+ They rely less on detailed knowledge about the code's structure.
+ If a customer can do the action, you can create a simple characterization
+ test by mechanizing the action by brute force.)
+\end_layout
+
+\begin_layout Section
+Refactoring and SOFA
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Smells, Metrics, SOFA
+\end_layout
+
+\begin_layout Itemize
+Single Level of Abstraction.
+ Complex tasks need divide & conquer.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+SOFA 
+\series default
+
+\begin_inset Formula $\checkmark$
+\end_inset
+
+Short 
+\begin_inset Formula $\checkmark$
+\end_inset
+
+One thing 
+\begin_inset Formula $\checkmark$
+\end_inset
+
+Few Arguments 
+\begin_inset Formula $\checkmark$
+\end_inset
+
+Abstraction (does it have consistent level of)
+\end_layout
+
+\begin_layout Itemize
+Boolean arguments: separate the function into two methods.
+ 
+\end_layout
+
+\begin_layout Itemize
+If arguments travel in a pack, maybe need to extract a new class! 
+\end_layout
+
+\begin_layout Itemize
+Quantitative: ABC Complexity 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Counts assignments, branches and conditions 
+\end_layout
+
+\begin_layout Itemize
+Score = square root(A^2 + B^2 + C^2) <= 20/method allowed 
+\end_layout
+
+\begin_layout Itemize
+Rails tool flog checks abc complexity 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quantitative: Cyclomatic complexity 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Less than 10 score per module 
+\end_layout
+
+\begin_layout Itemize
+# of independent paths through code = E - N + 2P (edges, nodes, connected
+ components) 
+\end_layout
+
+\begin_layout Itemize
+Saikuro 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Quantitative: Metrics
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+MAIN STUFF: Reek, Flog, Saikuro 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Which SOFA guideline is most important for unit-level testing? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A:
+\series default
+ Do One Thing/
+\series bold
+Have Few Arguments
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Intro to Method-level Refactoring
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Which is NOT a goal of method-level refactoring? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A:
+\series default
+ Eliminate bugs (Goals: reduce code complexity, eliminate code smells, improve
+ testability) 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Plan and Document Perspective on Software Maintenance.
+\end_layout
+
+\begin_layout Itemize
+2/3 cost goes to Maintenance.
+ Separate Team of people.
+ 
+\end_layout
+
+\begin_layout Itemize
+Maintenance Manager: Estimate costs, maintain schedule, evaluate risks,
+ Recruit team, Eval performance and set salary, Document maintenance (IEEE
+ standard), Accept blame 
+\end_layout
+
+\begin_layout Itemize
+Change Control Board - triage of change requests.
+ Basically go through a lot of shit.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Which statement regarding P-D maintenance is FALSE? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+All of the above are true (
+\color green
+The cost of maintenance usually exceeds the cost of development in P-D;
+ The Agile equivalent to P-D change requests is user stories, equivalent
+ of change request cost estimates is points, P-D releases are iterations;
+ The Agile lifecycle is similar to the P-D maintenance lifecycle: enhancing
+ working software product, collaborating with customer vs negotiating by
+ contract, continuously responding to change
+\color inherit
+)
+\end_layout
+
+\begin_layout Itemize
+Re-Engineer to Improve vs.
+ Replace?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Use automated tools to upgrade as SW ages and maintenance hard
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\series bold
+Reflection, Fallacies and Pitfalls 
+\end_layout
+
+\begin_layout Itemize
+Most time is spent on refactoring.
+ 
+\end_layout
+
+\begin_layout Itemize
+Do not throw out your old code and start over.
+ 
+\end_layout
+
+\begin_layout Itemize
+DO NOT mix refactoring with enhancements 
+\end_layout
+
+\begin_layout Itemize
+DO NOT abuse metrics! Use them only as a general guideline
+\end_layout
+
+\begin_layout Itemize
+If you wait too long, you will have to do a big refactoring!
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Which is TRUE regarding refactoring? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+Refactoring often results in changes to the test suite.
+ Others: Refactoring should not cause existing tests to fails.
+ Refactoring addresses explicit (vs.
+ implicit) customer requirements.
+\end_layout
+
+\begin_layout Subsection
+JavaScript, DOM, jQuery
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+JavaScript: the Big Picture
+\end_layout
+
+\begin_layout Itemize
+Graceful degradation: make sure that browsers incompatible with JS do not
+ show tools that trigger JS 
+\end_layout
+
+\begin_layout Itemize
+DOM is a language-independent, hierarchical representation of HTML or XML.Documen
+t = tree of objects.
+ Language independent.
+ 
+\end_layout
+
+\begin_layout Itemize
+Browser parses HTML or XML => DOM 
+\end_layout
+
+\begin_layout Itemize
+JavaScript API makes DOM data structures accessible from JS code.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Inspect DOM element values/attrs 
+\end_layout
+
+\begin_layout Itemize
+Change those and redisplay
+\end_layout
+
+\begin_layout Itemize
+Implemented incompatibility across browsers.
+ But jQuery helps.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+JavaScript is just a language, but JSAPI gives it power to script the browser.
+ No threads.
+ No concurrency.
+ 
+\series bold
+Single Threaded.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Client-side Javascript code can interact with HTML page elements because
+ this functionality: 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+(b) is part of the browser; (c) is provided by the JSAPI.
+ Not as part of JavaScript language.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Client-Side JavaScript for Ruby programmers
+\end_layout
+
+\begin_layout Itemize
+Slot names can always be in quotes, okay to omit if slot name is also a
+ legal JS var name 
+\end_layout
+
+\begin_layout Itemize
+var - restricts scope of a variable, unless specified outside errthing.
+ 
+\end_layout
+
+\begin_layout Itemize
+Functions are 1st class objects and closures 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Passing functions to functions 
+\end_layout
+
+\begin_layout Itemize
+Functions as property values (feels like instance methods) 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Best practice: create a single global variable that is an object whose propertie
+s are your functions and attributes.
+ 
+\end_layout
+
+\begin_layout Itemize
+The global object defines some constants that are part of JS's runtime environme
+nt: this(the global object) 
+\end_layout
+
+\begin_layout Itemize
+= javascript_include_tag 'application' 
+\end_layout
+
+\begin_layout Itemize
+Do this instead of hardcoding <script>.
+ A lot of little files is better than one big one.
+ Asset pipeline.
+ Compression.
+ • Keep code separate from HTML
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q:
+\series default
+ If you manually open two separate browser windows, can JavaScript code
+ loaded into one of those windows affect the other window? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+No, because each window has its own global object and therefore effectively
+ has its own “copy” of the interpreter
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Functions
+\end_layout
+
+\begin_layout Itemize
+Functions are first class objects, no one cares whether they have a name
+\end_layout
+
+\begin_layout Itemize
+Closures: (rely on the fact that whatever is in scope at the time when the
+ function was first defined, is going to be in scope when you execute it
+ later) and First class objects.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/what.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Can't call a function without parenthesis - just a reference to the actual
+ function.
+ 
+\end_layout
+
+\begin_layout Itemize
+Make functions be properties of the object.
+\end_layout
+
+\begin_layout Itemize
+Not using var inside of a scope makes the variable global.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/w.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+"Constructor-style" Functions.
+\end_layout
+
+\begin_layout Itemize
+No classes; object inheritance based on "prototypes".
+ Obj.__proto__.
+ Prototype is consulted, so object inherits both value-slots and function-slots.
+ Prototypal or differential inheritance! 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Call a function using new => creates new object (this) whose prototype is
+ whatever the function's prototype is and returns it 
+\end_layout
+
+\begin_layout Itemize
+Call a function on that object => this is bound to that object (receiver)
+ 
+\end_layout
+
+\begin_layout Itemize
+Call a function without receiver => this assumed to be the Global object
+ 
+\end_layout
+
+\begin_layout Itemize
+Call a "constructor-like" function without new => return value is undefined.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Given the following code, which will evaluate to 9?
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/code.pdf
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+var p = Square; (new p(3)).area();
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+The Document Objet Model & JQuery.
+\end_layout
+
+\begin_layout Itemize
+$('#movies'), $('.heading') != document.getElementById(), == $(window.document).find
+(selector) 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+When using Javascript for client-side form validation, which is NOT true?
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+\color red
+The server doesn’t have to repeat validations already performed by Javascript
+\color inherit
+ (True:
+\color green
+ Javascript code can inspect DOM element attributes to see what the user
+ typed; JavaScript code can prevent the “Submit” button from submitting
+ the form; Some validations may be impractical to perform on client so must
+ be done on server
+\color inherit
+)
+\end_layout
+
+\begin_layout Subsection
+AJAX and Jasmine
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Events and callbacks.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Manipulating DOM using events:
+\end_layout
+
+\begin_layout Enumerate
+Identify elements you will want to do stuff to 
+\end_layout
+
+\begin_layout Enumerate
+Identify elements on which interactions will trigger stuff to happen 
+\end_layout
+
+\begin_layout Enumerate
+Create failing tests for handler using TDD 
+\end_layout
+
+\begin_layout Enumerate
+Write handler functions that cause the desired stuff to happen 
+\end_layout
+
+\begin_layout Enumerate
+In a Setup function, bind the handlers (third way to call $() (css selector,
+ a string like html: return a a JQuery magical object, add that function
+ to the list of functions to be run when the document is ready)) 
+\end_layout
+
+\begin_layout Itemize
+document.ready
+\end_layout
+
+\begin_layout Itemize
+$(RP.setupFunc) 
+\end_layout
+
+\begin_layout Itemize
+Multiple setup functions => run in order added 
+\end_layout
+
+\begin_layout Itemize
+Typical use: bind handlers/behaviors on page, possibly conditionally.
+ 
+\end_layout
+
+\begin_layout Itemize
+What about links & buttons that are clickable without JS: handlers are run
+ first, if those return a falsy value: stop the actual other action from
+ happening.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Ajax: Asynchronous JavaScript and XML.
+\end_layout
+
+\begin_layout Itemize
+JSAPI call XmlHttpRequest (XHR) contacts server asynchronously and without
+ redrawing a page.
+ 
+\end_layout
+
+\begin_layout Itemize
+What should it render in response? 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+render :layout => false 
+\end_layout
+
+\begin_layout Itemize
+render :partial => 'movies/show' (instead of doing it on the client side)
+ 
+\end_layout
+
+\begin_layout Itemize
+render :json =>@movies (calls to_json) (if many things to be returned) 
+\end_layout
+
+\begin_layout Itemize
+render :text => @movie.title 
+\end_layout
+
+\begin_layout Itemize
+render nothing => true
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Rails Cookery: AJAX with Rails + jQuery:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+javascript_include_tag 'application' 
+\end_layout
+
+\begin_layout Itemize
+Your code in app/asset/javascripts/*.js 
+\end_layout
+
+\begin_layout Itemize
+Define handler function that… 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Optionally inspects element state, attributes,… 
+\end_layout
+
+\begin_layout Itemize
+Calls $.ajax() 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Define controller action & route to receive request, and determine what
+ will be returned 
+\end_layout
+
+\begin_layout Itemize
+Define callback function to receive server reply 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Unpack JSON objects and modify DOM? 
+\end_layout
+
+\begin_layout Itemize
+Replace existing HTML element (e.g.
+ <div>) in place? 
+\end_layout
+
+\begin_layout Itemize
+Add/change/remove CSS classes/properties
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+An example from lecture with showing movie info:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Remember to return false when hideMovieInfo or showMovieInfo, so that it
+ doesn't follow the href! 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q:
+\series default
+ Which is FALSE concerning AJAX/XHR vs non-AJAX interactions? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A:
+\series default
+\color red
+ If the server fails to respond to an XHR request, the browser’s UI will
+ freeze
+\color inherit
+ (True: 
+\color green
+AJAX requests can be handled with their own separate controller actions;
+ In general, the server must rely on explicit hint (like headers) to detect
+ XHR; The response to an AJAX request can be any content type (not just
+ HTML
+\color inherit
+)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Jasmine.
+\end_layout
+
+\begin_layout Itemize
+Idea: run your tests in the browser.
+ Reload page to rerun tests.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Install jasmine gem & jasmine-jquery add-on 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Jasmine "server" (rake jasmine) on localhost:8888 serves Jasmine test "page"
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/jasmine.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Which are always true of Jasmine’s it() method
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+(a) it can take a named function as its 2nd arg; (b) it can take an anonymous
+ function as its 2nd arg (false: it executes asynchronously)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Spies and Fixtures.
+\end_layout
+
+\begin_layout Itemize
+Spies
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+spyOn(MoviePopup, 'new').andReturn(value).andCallThrough().andCallFake(func)
+ 
+\end_layout
+
+\begin_layout Itemize
+MoviePopup is an actual hash.
+ Stubbing out the place where the call would have occurred and once the
+ stub gets called, Verifying that it gets called with the right arguments.
+ 
+\end_layout
+
+\begin_layout Itemize
+expect(MoviePopup.new.mostRecentCall.args).toContain("Gravity") 
+\end_layout
+
+\begin_layout Itemize
+expect($.ajax.mostRecentCall.args[0]['url']).toEqual("/movies/1") 
+\end_layout
+
+\begin_layout Itemize
+andCallFake is super important for stubbing out ajax request, since jasmine
+ doesn't actually return anything, do success, failure
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Fixtures
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Goal: provide enough HTML for JS to do its thing in a familiar environment.
+ 
+\end_layout
+
+\begin_layout Itemize
+loadFixtures('movie_row.html') in one directory 
+\end_layout
+
+\begin_layout Itemize
+Loads this into div#jasmine-fixtures (automatically cleaned out) 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/fixtures.pdf
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q:
+\series default
+ Why do we use andCallFake() to pass ajaxArgs in stubbing the AJAX call,
+ rather than just using andReturn(ajaxArgs)?
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+$.ajax doesn't actually return sever reply content, so andReturn won't work.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Single-page Apps and JSON APIs.
+\end_layout
+
+\begin_layout Itemize
+So what should the controller method render? HTML snippet, 
+\begin_inset Quotes eld
+\end_inset
+
+Raw
+\begin_inset Quotes erd
+\end_inset
+
+ text, 
+\series bold
+XML or JSON
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/single.pdf
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Which, if any, of the following statements are TRUE regarding JSON objects
+ in Rails apps?
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\color red
+A JSON object's properties must exactly match the corresponding ActiveRecord
+ model.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\color red
+In an association such as Movie has-many Reviews, the owned objects must
+ be returned in 1 or more separate JSON object.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\color red
+JSON objects can only be consumed by a JavaScript-capable client.
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+Can possibly overwrite toJson method, json can be consumed by anything.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\series bold
+JavaScript Wrap-Up.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Some of the AJAX interactions in Ben Bitdiddle's AJAX-intensive SaaS app
+ 
+\begin_inset Quotes eld
+\end_inset
+
+feel sluggish
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The Likeliest cause is:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+Can't tell without further information.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Testing
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Cucumber and @javascript 
+\end_layout
+
+\begin_layout Itemize
+Interactively debug Cucumber scenarious 
+\end_layout
+
+\begin_layout Itemize
+You can put byebug inside step defs 
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Design Patterns
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Overview.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Promote Reuse.
+ Separate the things that change from the things that stay the same.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Architectural ("macroscale") patterns 
+\begin_inset Formula $\checked$
+\end_inset
+
+MVC 
+\begin_inset Formula $\checked$
+\end_inset
+
+Pipe & Filter (compiler, Unix pipeline) 
+\begin_inset Formula $\checked$
+\end_inset
+
+Event-based 
+\begin_inset Formula $\checked$
+\end_inset
+
+Layering 
+\end_layout
+
+\begin_layout Itemize
+Computation patterns 
+\begin_inset Formula $\checked$
+\end_inset
+
+FFTs 
+\begin_inset Formula $\checked$
+\end_inset
+
+Structured & unstructured grids, etc
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The Gang of Four Patterns = 23 structural patterns in SW 
+\end_layout
+
+\begin_layout Itemize
+UML = Unified Modeling Language.
+ Boxes and Arrows.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+open Arrow - inheritance 
+\end_layout
+
+\begin_layout Itemize
+filled in arrow - attribute of a class, object is a part of another class
+ 
+\end_layout
+
+\begin_layout Itemize
+open diamond - aggregation, has_many, one to many 
+\end_layout
+
+\begin_layout Itemize
+filled in diamond - composition, same as aggregation, but the owned object
+ does not make sense without the owner.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q:
+\series default
+
+\begin_inset Graphics
+	filename graphics/uml.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+Item has one AccountCode.
+ A has one relationship is always bidirectional, but that is not the case
+ here, since one account code for many items, but an item could survive
+ the destruction of account codes, so may be less than 1, since aggregation
+ and not composition.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+\emph on
+\color red
+Antipattern?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Code that looks like it should probably follow some design pattern, but
+ doesn't 
+\end_layout
+
+\begin_layout Itemize
+Technical debt accumulated over time 
+\end_layout
+
+\begin_layout Itemize
+Symptoms: 
+\begin_inset Formula $\checked$
+\end_inset
+
+Viscosity (easier to hack than to do right thing) 
+\begin_inset Formula $\checked$
+\end_inset
+
+Immobility (can't DRY out functionality) 
+\begin_inset Formula $\checked$
+\end_inset
+
+Needless repetition (comes from immobility) 
+\begin_inset Formula $\checked$
+\end_inset
+
+Needless complexity from generality 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\color green
+SOLID OOP principles.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Single Responsibility principle 
+\end_layout
+
+\begin_layout Itemize
+Open/Closed principle
+\end_layout
+
+\begin_layout Itemize
+Liskov substitution principle 
+\end_layout
+
+\begin_layout Itemize
+Injection of dependencies principle 
+\end_layout
+
+\begin_layout Itemize
+Demeter principle
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\series bold
+Single Responsibility Principle.
+
+\series default
+ A class should have one and only one responsibility and reason to change.
+ Changes to one axis shouldn't affect others.
+\end_layout
+
+\begin_layout Itemize
+What's a class's responsibility in <= 25 words == Good shape
+\end_layout
+
+\begin_layout Itemize
+Quantify? Lack of Cohesion of Methods 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Revised Henderson-sellers 
+\end_layout
+
+\begin_layout Itemize
+LCOM = 1 - (sum(M, Vi)/M*V) (between 0-1) 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+M = # instance methods 
+\end_layout
+
+\begin_layout Itemize
+V = # instance variables 
+\end_layout
+
+\begin_layout Itemize
+MVi = # instance methods that accesss the ith instance variable (excluding
+ the trivial getters/setters) 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+LCOM-4 counts # of connected components in graph where related methods are
+ connected by an edge 
+\end_layout
+
+\begin_layout Itemize
+High LCOM suggests possible SPR violation
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Does ActiveRecord violate? No, since theses are all behaviors that can be
+ reused in different classes, included as modules.
+ 
+\end_layout
+
+\begin_layout Itemize
+Bigger Risk? Accumulated unnecessary behavior.
+ Extract a module or class.
+ Moviegoer needs to keep track of Address… 
+\end_layout
+
+\begin_layout Itemize
+Ways of including/introducing another class with our current one: Relations,
+ Compositions, Delegation.
+\end_layout
+
+\begin_layout Itemize
+has_one, has_many, compose_of, serialize :address (lose the ability to take
+ advantage of db structure)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Open/Closed Principle.
+\end_layout
+
+\begin_layout Itemize
+Classes should be open for extension, but closed for source modification.
+ 
+\end_layout
+
+\begin_layout Itemize
+Not as bad as in statically typed languages… But still ugly 
+\end_layout
+
+\begin_layout Enumerate
+Solution: Abstract Factory Pattern 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If output time isn't known till runtime 
+\end_layout
+
+\begin_layout Itemize
+@format.to_s.classify.constantize 
+\end_layout
+
+\begin_layout Itemize
+fomatter = formatter_class.sned(:new, self) 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Solution: Template Method Pattern & Strategy Pattern 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Template: Set of steps is the same, but implementation of steps is different.
+ -
+\emph on
+ inheritance
+\end_layout
+
+\begin_layout Itemize
+Strategy: task is the same, but many ways to do it.
+ -
+\emph on
+ delegation, formatter class (eg) 
+\end_layout
+
+\begin_layout Itemize
+Decorator Pattern: Drying Out Extension Points
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/pattern.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Liskov Substitution Principle.
+\series default
+"A method that works on an instance of type T, should also work on any subtype
+ of T."
+\end_layout
+
+\begin_layout Itemize
+Rectangle, Square, make_twice_as_wide_as_high debacle, don't make the Square
+ a subclass of rectangle.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/liskov.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+LSP compliant solution = composition + delegation.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Composition VS (misuse of) inheritance 
+\end_layout
+
+\begin_layout Itemize
+If can't express consistent assumptions about "contract" between class &
+ collaborators, Likely LSP violation.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+(a)
+\color green
+ In duck-typed languages, LSP violations can occur even when inheritance
+ is not used.
+\end_layout
+
+\begin_layout Itemize
+(b) 
+\color red
+In statically-typed languages, if the compiler reports no type errors/warnings,
+ then there are no LSP violations.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Dependency Injection & Dependency Inversion.
+\end_layout
+
+\begin_layout Itemize
+Problem: a depends on b, but b interface & implementation can change even
+ if functionality is stable 
+\end_layout
+
+\begin_layout Itemize
+Solution: "inject" an abstract interface that a&b depend on 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If not exact match, Adapter/Façade 
+\end_layout
+
+\begin_layout Itemize
+"inversion": now b (and a) depend on interface VS depending on b 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Ruby equivalent: Extract a Module to isolate the interface 
+\end_layout
+
+\begin_layout Itemize
+DIP in Rails example: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Don't do this: @vips = User.where('group="VIP"') 
+\end_layout
+
+\begin_layout Itemize
+A little better: @vips = User.find_vips 
+\end_layout
+
+\begin_layout Itemize
+A lot better 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+In controller: @vips = User.find_vips, independent of how VIPS are represented
+ in the model, don't have to change the view.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Related: Adapter.
+ 
+\emph default
+Similar features.
+
+\emph on
+ 
+\emph default
+Supporting external Services.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/inj.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Related: Façade 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Only use a subset of much more elaborate API, so the adapter is also a façade
+ 
+\end_layout
+
+\begin_layout Itemize
+Façade -simplifying the API.
+ Adapter - changing the API slightly so that all of the different services
+ use the same API
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+In RSpec controller tests, it's common to stub ActiveRecord::Base.where,
+ an inherited method.
+ Which statements are true of such tests?
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+The controller under test is tightly coupled to the model.
+ In a static language, we'd have to use DI to achieve the same task in the
+ testing framework.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Related: Null Object
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+helps to deal in case a particular object doesn't have an attr/empty class
+\end_layout
+
+\begin_layout Itemize
+Singleton Class (no realtion to the singleton pattern): Ensuring there's
+ only one of something
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The singleton object is in every respect a member of the base class, but
+ immutable and singular 
+\end_layout
+
+\begin_layout Itemize
+Kind of like a subclass, but actually just an instance of that class
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/null.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Null Object: a way to avoid different code paths, when the object that you
+ want does not actually exist 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\emph on
+Related: Proxy
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Implements same methods as "real" service object, but "intercepts" each
+ call 
+\end_layout
+
+\begin_layout Itemize
+Provide the same API, but different behavior 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Do authentication/protect access 
+\end_layout
+
+\begin_layout Itemize
+Defer work (be lazy)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+The use of FakeWeb to stub external SOA requests in testing is an example
+ of which design pattern? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+Proxy
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+The Demeter Principle.
+
+\series default
+ Don't talk to strangers 
+\end_layout
+
+\begin_layout Itemize
+You can call methods on: yourself, your own instance variables.
+ But not on the results returned by them!
+\end_layout
+
+\begin_layout Itemize
+Solutions: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Replace method with delegate
+\end_layout
+
+\begin_layout Itemize
+Be aware of important events without knowing implementation details (observer)
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Problem: entity O ("observer") wants to know when certain things happen
+ to entitiy S ("subject") 
+\end_layout
+
+\begin_layout Itemize
+Design issues: Acting on events is O's responsibility, don't want to pollute
+ S 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Observer example in Rails: Maintaining Relational Integrity 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Problem: delete a customer who "owns" previous transactions 
+\end_layout
+
+\begin_layout Itemize
+My solution: merge with "the unknown customer" 
+\end_layout
+
+\begin_layout Itemize
+ActiveRecord provides built-in hooks for Observer design pattern 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/observe.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+
+\series bold
+Plan and Document Perspective on Design Patterns.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Which statement regarding design patterns is FALSE?
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+None.
+ TRUE:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+P-D processes have an explicit deisgn phase that is a natural fit to the
+ use of design patterns and thus will have a good SW architecture
+\end_layout
+
+\begin_layout Itemize
+P-D drawback: initail architecture & design patterns may change as code
+ written and system evolves
+\end_layout
+
+\begin_layout Itemize
+Agile developers may plan for SW architectures and design patterns they
+ expect to need based on previous similar projects
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\series bold
+Summary.
+\end_layout
+
+\begin_layout Itemize
+In rails: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Adapter (database connection) 
+\end_layout
+
+\begin_layout Itemize
+Abstract Factory (database connection) (don't know until runtime what kind
+ of a database it's going to be) 
+\end_layout
+
+\begin_layout Itemize
+Observer (caching - Chapter 12) 
+\end_layout
+
+\begin_layout Itemize
+Proxy (AR association collections) 
+\end_layout
+
+\begin_layout Itemize
+Singleton (Inflector, turning names and things plural and singular) 
+\end_layout
+
+\begin_layout Itemize
+Decorator (AR scopes, alias_method_chain) 
+\end_layout
+
+\begin_layout Itemize
+Command (migrations) 
+\end_layout
+
+\begin_layout Itemize
+Iterator (everywhere) 
+\end_layout
+
+\begin_layout Itemize
+Duck Typing simplifies expressing and "plumbing" most of these by weakening
+ the relative coupling of inheritance 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Not following these rules might turn out to be costly for Ruby (since not
+ statically typed) later on, since these things are hidden 
+\end_layout
+
+\begin_layout Itemize
+Separate what changes from what stays the same 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Program to interface, not implementation 
+\end_layout
+
+\begin_layout Itemize
+Prefer composition over inheritance 
+\end_layout
+
+\begin_layout Itemize
+Delegate! 
+\end_layout
+
+\begin_layout Itemize
+All 3 are made easier by duck typing
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Rails' ActiveRecord module defines and AbstractAdapter for connecting databases.
+ Subclasses of AbstractAdapter exist for each database type and can be added
+ for new databases; when the app starts, the correct one is instantiated
+ based on config/database.yml.
+ Which SOLID principle is NOT illustrated by this example.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+\color green
+Demeter principle.
+
+\color inherit
+ 
+\color red
+Open/Closed principle.
+ Dependency Injection.
+ Liskov Substitution.
+\end_layout
+
+\begin_layout Section
+Practical Dev-Ops
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+From Development to Deployment.
+\end_layout
+
+\begin_layout Itemize
+Solution to making things easier: stick with PaaS (Platform as a Service)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/paas.pdf
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+"Performance and security" defined:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Performance Stability 
+\begin_inset Formula $\checkmark$
+\end_inset
+
+Availability or Uptime 
+\begin_inset Formula $\checkmark$
+\end_inset
+
+ Responsiveness: How long after click does user get response.
+ 
+\begin_inset Formula $\checkmark$
+\end_inset
+
+Scalability: As #users increases, can you maintain responsiveness without
+ increasing cost/user
+\end_layout
+
+\begin_layout Itemize
+Security 
+\begin_inset Formula $\checkmark$
+\end_inset
+
+Privacy: Is data access limited to the appropriate users? 
+\begin_inset Formula $\checkmark$
+\end_inset
+
+Authentication: Can we trust that user is who s/he claims to be? 
+\begin_inset Formula $\checkmark$
+\end_inset
+
+Data Integrity: Is user's sensitive data tamper-evident? 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Let R = RottenPotatoes app's availability 
+\end_layout
+
+\begin_layout Itemize
+H = Heroku's availability 
+\end_layout
+
+\begin_layout Itemize
+C = Internet connection availability 
+\end_layout
+
+\begin_layout Itemize
+P = Armando's perception of RP availability
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Which relationship among these quantities holds? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+P <= min(C, H, R) - if I'm basically an addict 
+\series bold
+OR
+\series default
+ Can’t tell without additional information
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Quantifying Availability and Responsiveness.
+\end_layout
+
+\begin_layout Itemize
+Response Time: how long after I interact with site do I perceive response?
+ 
+\end_layout
+
+\begin_layout Itemize
+For small content on fast network, dominated by latency(how long does it
+ take you to get the first byte back) (not bandwidth (how long does it take
+ to get the rest of the bytes back)), very important for SaaS apps since
+ we cannot control bandwidth, but can control latency
+\end_layout
+
+\begin_layout Itemize
+Real world performance observations are not a normal distribution bell curve.
+ 
+\end_layout
+
+\begin_layout Itemize
+SLO - Service Level Objective Instead of worst case or average: what % id
+ users get acceptable performance 
+\end_layout
+
+\begin_layout Itemize
+Specify %ile, target response time, time window, time window is very important
+ 
+\end_layout
+
+\begin_layout Itemize
+SLA is same, but with lawyers.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\emph on
+Apdex: simplified SLO
+\end_layout
+
+\begin_layout Itemize
+Given a threshold latency T for user satisfaction: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Satisfactory requests take t<=T 
+\end_layout
+
+\begin_layout Itemize
+Tolerable requests take T<= t <= 4T 
+\end_layout
+
+\begin_layout Itemize
+Apdex = (#satisfactory + 0.5(#tolerable))/#reqs 
+\end_layout
+
+\begin_layout Itemize
+0.85 - 0.93 apdex is "good" 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Warning! Can hide systematic outliers if not used carefully! If every action
+ is super fast, except for one action, assume ecommerce, where the checkout
+ takes a lot longer than any of the previous 15 clicks, losing users 
+\end_layout
+
+\begin_layout Itemize
+What do we do if the site is slow? 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Small site: overprovision
+\end_layout
+
+\begin_layout Itemize
+Large site: worry 
+\end_layout
+
+\begin_layout Itemize
+Insight: same problems that push us out of PaaS-friendly tier are the ones
+ that will dog us when larger! 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q:
+\series default
+ RottenPotatoes’ target uptime is 99.9%.
+ Yesterday there was a one hour outage.
+ Which statement is true: 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A:
+\series default
+ There isn’t enough information to determine whether RottenPotatoes can
+ meet its user-perceived uptime goal.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Continuous Integration and Continuous Deployment.
+\end_layout
+
+\begin_layout Itemize
+Very frequent releases! Low risk methodology.
+ Deployment is a non-event.
+ Relies heavily on automation.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Continuous Integration: 
+\emph default
+integration-testing the app beyond what each developer does.
+ On the Cloud 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Common strategy: integrate with github 
+\end_layout
+
+\begin_layout Itemize
+Difference between a bunch of environment 
+\end_layout
+
+\begin_layout Itemize
+Testing interaction with other (potentially slower) services 
+\end_layout
+
+\begin_layout Itemize
+Protection against attacks 
+\end_layout
+
+\begin_layout Itemize
+Stress Testing/longevity testing of new features/code paths 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+If already tested and everything is safe, might as well push, meets the
+ clients milestone specifications.
+ Tag a release with a cute name or just the id.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+RottenPotatoes just got some new AJAX features.
+ Where does it make sense to test these features? 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+All of the above (Using autotest with RSpec+Cucumber, in CI, in the staging
+ environment)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Upgrades and Feature Flags.
+\end_layout
+
+\begin_layout Itemize
+But what if you have to do it incrementally? Incremental upgrades with feature
+ flags.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Do nondestructive migration 
+\end_layout
+
+\begin_layout Enumerate
+Deploy method protected by feature flag 
+\end_layout
+
+\begin_layout Enumerate
+Flip feature flag on; if disaster, flip back 
+\end_layout
+
+\begin_layout Enumerate
+Once all records moved, deploy new code without feature flag 
+\end_layout
+
+\begin_layout Enumerate
+Apply migration to remove old columns 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/up.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Graphics
+	filename graphics/grades.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Undoing? By moving forward, not a down migration, not all migrations are
+ reversible.
+ Down migrations are not tested well, save mainly for development.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q:
+\series default
+ Which one, if any, is a POOR place to store the value (eg true/false) of
+ a feature flag, e.g an implementation of Featureflags.new_name_schema 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A:
+\series default
+ A YAML file in config/ directory of app, can't flip the value without restartin
+g the app.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Monitoring.
+\end_layout
+
+\begin_layout Itemize
+If not monitoring, probably broken.
+ Not limited to only Deployment 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Internal: instrumentation embedded in app and/or framework (Rails, Rack,
+ etc) 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Hosted.
+ Info collected in your app but stored centrally 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+External: active probing by other site(s).
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+What to measure? 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Stress testing or load testing: how far can I push my system 
+\end_layout
+
+\begin_layout Itemize
+Usually, one component will be bottleneck 
+\end_layout
+
+\begin_layout Itemize
+Load Testers can be simple or sophisticated 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Fixed sequence of URI's over and over again 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Longevity bugs caused due to a resource leak (RAM, file buffers…) 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Rejuvenation for infrastructure: "rolling reboots" 
+\end_layout
+
+\begin_layout Itemize
+Running out of sessions (eg, giving a session to any user, even if they
+ are not logged in)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Q:
+\series default
+ Which is probably NOT a metric of high interest to you, the app operator?
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A:
+\series default
+\color red
+Slowest Queries 9, 9%ile response time, Rendering time of 3 slowest views
+\color green
+, Maximum CPU utilization
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Caching: Improvising Rendering Time & Database Performance.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Caching:
+\emph default
+ Avoid touching database if answer to a query hasn't changed 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Identify what to cache 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Whole view: page & action caching 
+\end_layout
+
+\begin_layout Itemize
+Parts of view: fragment caching with partials 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Invalidate stale cached versions when underlying db changes.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Page caching bypasses controller action cache_page :index 
+\end_layout
+
+\begin_layout Itemize
+Action caching runs filters first 
+\end_layout
+
+\begin_layout Itemize
+Caveat: caching based on page URL without optional "?" parameters! 
+\end_layout
+
+\begin_layout Itemize
+Fragment caching: HTML resulting from rendering part of a page (e.g.
+ partial) 
+\end_layout
+
+\begin_layout Itemize
+Sweepers to observe change to db to get rid of old cached versions
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Under-17 visitors to RottenPotatoes shouldn't see NC-17 movies in any listing.
+ A controller filter exists that can determine if a user is under 17.
+ What kind of caching would be appropriate when implementing this?
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+Action and Fragment.
+ Not Page.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Avoiding Abusive Queries.
+\end_layout
+
+\begin_layout Itemize
+Alternative: find ways to relieve pressure on database so can stay in “PaaS-frie
+ndly” tier 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use caching to reduce number of database accesses 
+\end_layout
+
+\begin_layout Enumerate
+Avoid “n+1 queries” problem in Associations 3.
+ Use indices judiciously
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Eager loading instead 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Naïve way: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+@movie = movie.where(…) 
+\end_layout
+
+\begin_layout Itemize
+Reviews = @movie.reviews 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+May be faster: 
+\end_layout
+
+\begin_layout Itemize
+@movie = movie.where(…),include(:reviews) 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Use indices! Rails_indexed gem to help identify missing and unnecessary
+ indices.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Q: 
+\series default
+Suppose Movie has many Moviegoers through Reviews.
+ Which foreign key index would MOST help speed up the query 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+A: 
+\series default
+reviews.movie_id
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Defending Customer Data.
+\end_layout
+
+\begin_layout Itemize
+SSL (Secure Sockets Layer).
+ Public Key cryptography 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+CA’s public keys built into browser, so can check if cert matches hostname
+\end_layout
+
+\begin_layout Enumerate
+Diffie-Hellman key exchange is used to bootstrap an encrypted channel for
+ further communication 
+\end_layout
+
+\begin_layout Enumerate
+Use Rails force_ssl method to force some or all actions to use SSL.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+DOES: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Assures browser that bob.com is legit 
+\end_layout
+
+\begin_layout Itemize
+Prevents eavesdroppers from reading HTTP traffic between browser & bob.com
+ 
+\end_layout
+
+\begin_layout Itemize
+Creates additional work for server! 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+DOES NOT: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+✖ Assure server of who the user is 
+\end_layout
+
+\begin_layout Itemize
+✖ Say anything about what happens to sensitive data after it reaches server
+ 
+\end_layout
+
+\begin_layout Itemize
+✖ Say anything about whether server is vulnerable to other server attacks
+ 
+\end_layout
+
+\begin_layout Itemize
+✖ Protect browser from malware if server is evil
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+SQL Injection, easy to guard against 
+\end_layout
+
+\begin_layout Itemize
+Solution: Moviegoer.where("name=?", params[:name])
+\end_layout
+
+\begin_layout Itemize
+Cross-site request forgery 
+\end_layout
+
+\begin_layout Itemize
+But should really use session nonce, used once, random character generated
+ only if the request was generated from the same site
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+P&D Perspective on Performance, Releases, Reliability and Security.
+\end_layout
+
+\begin_layout Itemize
+Ignore performance 
+\end_layout
+
+\begin_layout Itemize
+P&D releases include everything: code, configuration files, data, & documentatio
+n 
+\end_layout
+
+\begin_layout Itemize
+P&D releases number scheme: e.g., Rails version 3.2.12 – .12 is minor release
+ – .2 is major release – 3 so large a release that it can break APIs, must
+ re-port app 
+\end_layout
+
+\begin_layout Itemize
+Dependency via redundancy, how much can afford? 
+\end_layout
+
+\begin_layout Itemize
+Mean time to failure = MTTF 
+\end_layout
+
+\begin_layout Itemize
+Unavailability = Mean time to repair/MTTF 
+\end_layout
+
+\begin_layout Itemize
+If SW not working, smth wrong with organization, improve that and we're
+ golden 
+\end_layout
+
+\begin_layout Itemize
+Penetration tets to check security
+\end_layout
+
+\begin_layout Itemize
+3 Security principles:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Least privilege - “need-to-know” principle for classified information 
+\end_layout
+
+\begin_layout Enumerate
+Fail-safe defaults - Default should be denial of access 
+\end_layout
+
+\begin_layout Enumerate
+Psychological acceptability - Needs to be easy to use so that the security
+ mechanisms are routinely followed
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Q: Which statement regarding reliability and security is most likely 
+\color red
+FALSE
+\color inherit
+?
+\end_layout
+
+\begin_layout Itemize
+A: Not removing data races could violate the security principle of psychological
+ acceptability.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\color green
+TRUE:
+\color inherit
+ Improper initialization of data could violate the security principle of
+ fail-safe defaults.
+ Not checking buffer limits could violate the security principle of least
+ privilege.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\series bold
+Fallacies, Pitfalls and Concluding Remarks.
+\end_layout
+
+\begin_layout Itemize
+
+\color red
+Optimizing Prematurely or Without Measurements 
+\end_layout
+
+\begin_layout Itemize
+
+\color red
+“Mine is a 3-tier app on cloud computing, so it will scale” 
+\end_layout
+
+\begin_layout Itemize
+
+\color red
+“My small site isn’t a target”
+\end_layout
+
+\begin_layout Itemize
+
+\color red
+Unless you're doing monitoring you really don't know!
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{multicols}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
